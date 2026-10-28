@@ -120,6 +120,19 @@ Multitool по умолчанию использует порт 80, поэтом
    - [backend](./manifests/task2/deployment-backend.yaml) (образ `wbitt/network-multitool`).
 2. Создал [Service-frontend](./manifests/task2/service-frontend.yaml) и [Service-backend](./manifests/task2/service-backend.yaml) для каждого приложения.
 3. Развернул ингресс контроллер `kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.15.1/deploy/static/provider/cloud/deploy.yaml`
+Для функционирования по условию задания необходимо привести контроллер в режим HostNetwork=true
+```bash
+kubectl patch deployment ingress-nginx-controller \
+  -n ingress-nginx \
+  --type=strategic \
+  -p '
+spec:
+  template:
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+'
+```
 4. Создать [Ingress](./manifests/task2/ingress.yaml), который:
    - Открывает `frontend` по пути `/`. 
    - Открывает `backend` по пути `/api`.
