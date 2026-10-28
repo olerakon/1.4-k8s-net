@@ -128,7 +128,7 @@ Multitool по умолчанию использует порт 80, поэтом
 
 5. Проверил доступность:
 
-![2.1](screenshots/2.1png)
+![2.1](screenshots/2.1.png)
 
 ![2.2](screenshots/2.2.png)
 
